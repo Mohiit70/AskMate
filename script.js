@@ -2,7 +2,7 @@ async function query(data) {
     const response = await fetch(
         "https://api-inference.huggingface.co/models/distilbert-base-uncased-distilled-squad",
         {
-            headers: { Authorization: "Bearer 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" },
+            headers: { Authorization: "###" },
             method: "POST",
             body: JSON.stringify(data),
         }
