@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>AskMate</title>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="AskMate Logo">
+        </div>
+        <h1>AskMate</h1>
+    </header>
+    <main>
+        <div class="main-container">
+            <div class="center-box" id="centerBox">
+                <textarea id="contentInput" placeholder="Paste your content here..."></textarea>
+                <div class="question-section" id="questionSection" style="display: none;">
+                    <input type="text" id="questionInput" placeholder="Ask a question...">
+                </div>
+                <div class="answer-section" id="answerSection">
+                    
+                </div>
+            </div>
+            <button class="result-button" onclick="getResult()">Result</button>
+            <button class="reset-button" onclick="resetApp()">Reset</button>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
