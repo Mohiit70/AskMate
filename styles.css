@@ -7,14 +7,14 @@ body {
 }
 
 header {
-    background-color: #3498db;
-    color: #fff;
-    padding: 20px;
+    background-color: #e2f4fc;
+    color: #0d0e0e;
+    padding: 9px;
     text-align: center;
 }
 
 .logo-container img {
-    height: 50px;
+    height: 60px;
 }
 
 h1 {
@@ -30,7 +30,7 @@ main {
 
 .main-container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
@@ -38,78 +38,38 @@ main {
     background-color: #ecf0f1;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 80%;
-    display: none;
+    padding: 50px;
+    width: 50%;
 }
 
-input[type="text"],
-textarea {
+.content-section,
+.question-section,
+.result-section {
+    margin-bottom: 15px;
+}
+
+textarea,
+input[type="text"] {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
-.options-section {
-    display: flex;
-    margin-top: 10px;
+label {
+    display: block;
+    margin-bottom: 5px;
 }
 
-button {
+.submit-button {
     padding: 10px;
     background-color: #3498db;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 10px;
-}
-
-.reset-button {
-    background-color: #e74c3c;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-/* ... (existing CSS code) ... */
-
-.main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.center-box {
-    background-color: #ecf0f1;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 40%; /* Set an initial width */
-    display: flex;
-    flex-direction: column;
-    transition: width 0.3s; /* Add a smooth transition effect */
-}
-
-.options-section {
-    display: flex;
     margin-top: 10px;
 }
-
-button {
-    padding: 10px;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-}
-
 
 .result-button,
 .reset-button {
@@ -121,5 +81,4 @@ button {
     cursor: pointer;
     margin-top: 10px;
 }
-
 
