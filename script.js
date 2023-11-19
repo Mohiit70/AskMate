@@ -1,12 +1,17 @@
+// API 
+const apiUrl = "https://api-inference.huggingface.co/models/distilbert-base-uncased-distilled-squad";
+const apiToken = "Bearer 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";
+
+//  Hugging Face API
 async function query(data) {
-    const response = await fetch(
-        "https://api-inference.huggingface.co/models/distilbert-base-uncased-distilled-squad",
-        {
-            headers: { Authorization: "###" },
-            method: "POST",
-            body: JSON.stringify(data),
-        }
-    );
+    const response = await fetch(apiUrl, {
+        headers: {
+            Authorization: apiToken,
+            "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(data),
+    });
 
     if (!response.ok) {
         throw new Error("Error in API request");
@@ -16,93 +21,55 @@ async function query(data) {
     return result;
 }
 
-function getResult() {
-    const contentInput = document.getElementById('contentInput').value;
+// Function to submit content and show question section
+function submitContent() {
+    const contentSection = document.getElementById('contentSection');
     const questionSection = document.getElementById('questionSection');
-    const questionInput = document.getElementById('questionInput').value;
-    const answerSection = document.getElementById('answerSection');
 
-    if (!contentInput || (questionSection.style.display !== 'none' && !questionInput)) {
-        alert("Please enter content and question before getting the result.");
-        return;
-    }
-
-    const data = {
-        inputs: {
-            question: questionInput,
-            context: contentInput,
-        },
-    };
-
-    query(data)
-        .then((response) => {
-            if (response && response.answer) {
-                answerSection.innerHTML = `<strong>Answer:</strong> ${response.answer}`;
-            } else {
-                answerSection.innerHTML = '<strong>Answer:</strong> No answer available.';
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            answerSection.innerHTML = '<strong>Answer:</strong> Error retrieving the answer.';
-        });
-}
-
-function resetApp() {
-    const centerBox = document.getElementById('centerBox');
-    const questionSection = document.getElementById('questionSection');
-    const answerSection = document.getElementById('answerSection');
-
-    centerBox.style.width = '40%';
-    questionSection.style.display = 'none';
-    document.getElementById('questionInput').value = '';
-    answerSection.innerHTML = '';
-
-    console.log('Application reset');
-}
-function submitContext() {
-    const contentInput = document.getElementById('contentInput').value;
-    const questionSection = document.getElementById('questionSection');
-    const contextButton = document.querySelector('.context-button');
-    const questionButton = document.querySelector('.question-button');
-
-    if (!contentInput) {
-        alert("Please enter content before submitting.");
-        return;
-    }
-
+    contentSection.style.display = 'none';
     questionSection.style.display = 'flex';
-    contextButton.style.display = 'none';
-    questionButton.style.display = 'block';
 }
 
+// Function to submit question, show loading, and fetch result
 function submitQuestion() {
-    const contentInput = document.getElementById('contentInput').value;
-    const questionInput = document.getElementById('questionInput').value;
-    const answerSection = document.getElementById('answerSection');
+    const questionSection = document.getElementById('questionSection');
+    const resultSection = document.getElementById('resultSection');
 
-    if (!contentInput || !questionInput) {
-        alert("Please enter content and question before getting the result.");
-        return;
-    }
+    questionSection.style.display = 'none';
+    resultSection.style.display = 'flex';
 
-    const data = {
-        inputs: {
-            question: questionInput,
-            context: contentInput,
-        },
-    };
+    // loading 
+    setTimeout(() => {
+        const contentInput = document.getElementById('contentInput').value;
+        const questionInput = document.getElementById('questionInput').value;
 
-    query(data)
-        .then((response) => {
-            if (response && response.answer) {
-                answerSection.innerHTML = `<strong>Answer:</strong> ${response.answer}`;
-            } else {
-                answerSection.innerHTML = '<strong>Answer:</strong> No answer available.';
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            answerSection.innerHTML = '<strong>Answer:</strong> Error retrieving the answer.';
-        });
+        
+        if (!contentInput || !questionInput) {
+            alert("Please enter content and question before getting the result.");
+            return;
+        }
+
+        
+        const data = {
+            inputs: {
+                question: questionInput,
+                context: contentInput,
+            },
+        };
+
+        
+        query(data)
+            .then((response) => {
+                
+                if (response && response.answer) {
+                    resultSection.innerHTML = `<strong>Answer:</strong> ${response.answer}`;
+                } else {
+                    resultSection.innerHTML = '<strong>Answer:</strong> No answer available.';
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                resultSection.innerHTML = '<strong>Answer:</strong> Error retrieving the answer.';
+            });
+    }, 2000); 
 }
