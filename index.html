@@ -1,51 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>AskMate</title>
+    <title>Ask Mate</title>
 </head>
-
 <body>
     <header>
         <div class="logo-container">
-            <img src="logo.png" alt="AskMate Logo">
+            <img src="Logo.png" alt="AskMate Logo">
         </div>
-        <h1>AskMate</h1>
+        <h1>Ask Mate</h1>
     </header>
     <main>
         <div class="main-container">
             <div class="center-box" id="centerBox">
-                <div class="input-section">
+                <div class="content-section" id="contentSection">
+                    <label for="contentInput">Content:</label>
                     <textarea id="contentInput" placeholder="Paste your content here..."></textarea>
+                    <button class="submit-button" onclick="submitContent()">Submit Content</button>
                 </div>
                 <div class="question-section" id="questionSection" style="display: none;">
                     <label for="questionInput">Question:</label>
                     <input type="text" id="questionInput" placeholder="Ask a question...">
+                    <button class="submit-button" onclick="submitQuestion()">Submit Question</button>
                 </div>
-                <div class="answer-section" id="answerSection">
-                    <!-- Answers will be dynamically displayed here -->
+                <div class="result-section" id="resultSection" style="display: none;">
+                    <p>Loading result...</p>
                 </div>
             </div>
-            <button class="result-button" onclick="getResult()">Result</button>
-            <button class="reset-button" onclick="resetApp()">Reset</button>
         </div>
-
-
-        <div class="input-section">
-            <textarea id="contentInput" placeholder="Paste your content here..."></textarea>
-        </div>
-        <div class="question-section" id="questionSection" style="display: none;">
-            <label for="questionInput">Question:</label>
-            <input type="text" id="questionInput" placeholder="Ask a question...">
-        </div>
-        <button class="context-button" onclick="submitContext()">Submit Context</button>
-        <button class="question-button" onclick="submitQuestion()" style="display: none;">Ask Question</button>
-
     </main>
     <script src="script.js"></script>
 </body>
-
 </html>
